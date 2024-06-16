@@ -1,0 +1,9 @@
+.movie-card {
+    background-color: #2c2c2c;
+    color: #ffffff;
+}
+
+.movie-card__image {
+   height: 300px;
+}
+

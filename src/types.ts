@@ -13,11 +13,11 @@ export interface MovieDetails extends Movie {
 } */
 
 export interface Movie {
-    id: string;
+    id: number;
     name: string;
-    posterUrl: string;
+    poster: { url: string };
     year: number;
-    rating: number;
+    rating: { kp: number };
     description?: string;
     releaseDate?: string;
     genres?: string[];

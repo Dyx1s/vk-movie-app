@@ -25,7 +25,11 @@ const HomePage: React.FC = () => {
 
   return (
     <Container className='home-container'>
-      <MovieList movies={movies} setPage={setPage}/>
+      <MovieList
+        movies={movies} 
+        page={page} 
+        setPage={setPage}
+      />
     </Container>
   )
 }
