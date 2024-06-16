@@ -1,9 +1,10 @@
 import React from 'react'
+import MovieCard from '../components/MovieCard'
 
 const MoviePage: React.FC = () => {
   return (
     <div>
-      MoviePage
+      <MovieCard />
     </div>
   )
 }

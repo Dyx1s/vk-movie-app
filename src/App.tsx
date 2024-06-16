@@ -1,22 +1,21 @@
-import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import MoviePage from './pages/MoviePage';
-import FavoritesPage from './pages/FavoritesPage';
+import Home from './pages/HomePage';
+import MovieDetails from './pages/MovieDetails';
+import Favorites from './pages/FavoritesPage';
+import './App.css';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Router>
-      <Navbar/>
       <Routes>
-        <Route path='/' element={<HomePage />}/>
-        <Route path='/movies' element={<MoviePage />}/>
-        <Route path='/favorites' element={<FavoritesPage />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </Router>
-  )
+  );
 }
+
+
 
 export default App;

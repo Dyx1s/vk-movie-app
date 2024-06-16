@@ -11,8 +11,7 @@ const Navbar: React.FC = () => {
           <Link to={'/'} style={{ textDecoration: 'none', color: 'white' }}>Let's movie!</Link>
         </Typography>
         <Box>
-          <Button color="inherit" component={ Link } to='/'>Home</Button>
-          <Button color="inherit" component={ Link } to='/movies'>Movies</Button>
+          <Button color="inherit" component={ Link } to='/movies/:id'>Movies</Button>
           <Button color="inherit" component={ Link } to='/favorites'>Favorites</Button>
         </Box>
       </Toolbar>
