@@ -1,7 +1,13 @@
 export interface Movie {
-
+    id: number;
+    name: string;
+    year: number;
+    rating: number;
 }
 
-export interface MovieDetails {
-    
+export interface MovieDetails extends Movie {
+    description: string;
+    genres: { genre: string }[];
+    realesed: string; /* ??? */
+    rating: number; /* ??? */
 }
