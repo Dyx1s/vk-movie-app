@@ -3,7 +3,6 @@ import { Container } from '@mui/material';
 import { Movie } from '../types';
 import { fetchMovies, fetchMoviesByFilter } from '../services/api';
 import MovieList from '../components/MovieList';
-import MovieCard from '../components/MovieCard';
 
 
 const HomePage: React.FC = () => {

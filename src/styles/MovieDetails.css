@@ -1,0 +1,13 @@
+.movie-details-container {
+    padding: 20px;
+  }
+  
+  .movie-details-image {
+    max-width: 300px;
+  }
+  
+  .movie-details-content {
+    padding: 16px;
+    text-align: center;
+  }
+  
