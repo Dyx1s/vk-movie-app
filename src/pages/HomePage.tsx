@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Container } from '@mui/material';
-import MovieCard from '../components/MovieCard';
 import { Movie } from '../types';
 import { fetchMovies, fetchMoviesByFilter } from '../services/api';
 import MovieList from '../components/MovieList';
+import MovieCard from '../components/MovieCard';
 
 
 const HomePage: React.FC = () => {
@@ -11,15 +11,21 @@ const HomePage: React.FC = () => {
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
-    fetchMovies(page).then(({ data: { docs } }) => {
-      setMovies(docs);
+    fetchMovies(page).then(response => {
+      setMovies(pervMovies => [...pervMovies, ...response.data.docs]);
     });
   }, [page]);
+
+  /* const handleFilter = (genre?: string, rating?: number, year?: number) => {
+    fetchMoviesByFilter(genre, rating, year, page).then(response => {
+      setMovies(pervMovies => [...pervMovies, ...response.data.docs]);
+    });
+  } */
 
 
   return (
     <Container className='home-container'>
-      <MovieList />
+      <MovieList movies={movies} setPage={setPage}/>
     </Container>
   )
 }
