@@ -19,7 +19,6 @@ export interface Movie {
     year: number;
     rating: { kp: number };
     description?: string;
-    releaseDate?: string;
     genres: [{name: string}];
   }
   
