@@ -19,6 +19,7 @@ const Filter: React.FC<FilterProps> = ({onFilter}) => {
 
   const handleFilter = () => {
     onFilter(genre, rating, year);
+
   }
   return (
     <Box className='filter-container'>
@@ -26,6 +27,7 @@ const Filter: React.FC<FilterProps> = ({onFilter}) => {
         select
         label="Жанр"
         value={genre || ''}
+        id='outlined-select-genre'
         onChange={(event) => setGenre(event.target.value)}
         sx={{width: 200}}
         className='filter-item'
@@ -36,10 +38,35 @@ const Filter: React.FC<FilterProps> = ({onFilter}) => {
             {genre}
           </MenuItem>
         ))}
-        
-      
-
       </TextField>
+
+      <TextField
+        label="Рейтинг"
+        type="number"
+        value={rating || ''}
+        onChange={(event) => setRating(Number(event.target.value))}
+        sx={{width: 200}}
+        className='filter-item'
+      />
+
+      <TextField
+        label="Год"
+        type='number'
+        value={year || ''}
+        onChange={e => setYear(parseInt(e.target.value, 10))}
+        sx={{width: 200}}
+        className='filter-item'
+      />
+
+      <Button 
+        className='filter-btn' 
+        variant="contained" 
+        color='primary' 
+        sx={{width: 200}} 
+        onClick={handleFilter}
+      >
+        Отфильтровать
+      </Button>
 
     </Box>
   )

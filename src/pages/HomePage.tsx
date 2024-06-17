@@ -1,38 +1,54 @@
-import React, { useState, useEffect } from 'react'
-import { Container } from '@mui/material';
-import { Movie } from '../types';
-import { fetchMovies, fetchMoviesByFilter } from '../services/api';
-import MovieList from '../components/MovieList';
+import React, { useState, useEffect } from 'react';
+import { Container, Typography, Pagination } from '@mui/material';
+
 import Filter from '../components/Filter';
+import MovieList from '../components/MovieList';
+import { fetchMovies } from '../services/api';
+import { Movie, FilterOptions, ApiResponse } from '../types';
+import '../styles/Home.css';
 
-
-const HomePage: React.FC = () => {
+const Home: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState('');
+  const [filters, setFilters] = useState<FilterOptions>({ genres: [], rating: { kp: 0 }, year: 0 });
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    fetchMovies(page).then(response => {
-      setMovies(pervMovies => [...pervMovies, ...response.data.docs]);
-    });
-  }, [page]);
+    const getMovies = async () => {
+      try {
+        const data: ApiResponse = await fetchMovies(page, query, filters.genres, filters.rating.kp, filters.year);
+        setMovies(data.docs);
+        setTotalPages(data.pages);
+      } catch (error) {
+        console.error('Error fetching movies:', error);
+      }
+    };
+    getMovies();
+  }, [query, filters, page]);
 
-  const handleFilter = (genre?: string, rating?: number, year?: number) => {
-    fetchMoviesByFilter(genre, rating, year, page).then(response => {
-      setMovies(pervMovies => [...pervMovies, ...response.data.docs]);
-    });
-  }
-
+/*   const handleFilterChange = (name: keyof FilterOptions, value: any) => {
+    setFilters((prevFilters: FilterOptions) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+  }; */
 
   return (
-    <Container className='home-container'>
-      <Filter onFilter={handleFilter}/>
-      <MovieList
-        movies={movies} 
-        page={page} 
-        setPage={setPage}
+    <Container className="home-container">
+      <Typography variant="h2">Movie Database</Typography>
+      <SearchBar  />
+      <Filter  />
+      <MovieList movies={movies} page={page} setPage={setPage}/>
+      <Pagination
+        count={totalPages}
+        page={page}
+        onChange={(event, value) => setPage(value)}
+        color="primary"
+        style={{ marginTop: '20px' }}
       />
     </Container>
-  )
-}
+  );
+};
 
-export default HomePage;
+export default Home;

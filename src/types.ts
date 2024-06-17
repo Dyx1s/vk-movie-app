@@ -13,12 +13,29 @@ export interface MovieDetails extends Movie {
 } */
 
 export interface Movie {
-    id: number;
+    id: string;
     name: string;
-    poster: { url: string };
-    year: number;
     rating: { kp: number };
-    description?: string;
-    genres: [{name: string}];
-  }
-  
+    year: number;
+    poster: { url: string };
+    description: string;
+    genres: { name: string }[];
+}
+
+export interface ApiResponse {
+    docs: Movie[];
+    pages: number;
+}
+
+export interface FilterOptions {
+    genres: { name: string }[];
+    rating: { kp: number };
+    year: number;
+}
+
+export interface SearchQuery {
+    query: string;
+    filters: FilterOptions;
+    page: number;
+}
+

@@ -8,3 +8,8 @@
     min-width: 120px;
 }
 
+.filter-btn {
+    align-items:flex-end;
+    color: #ffffff;
+    width: 200px;
+}

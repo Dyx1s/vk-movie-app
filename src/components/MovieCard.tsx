@@ -2,7 +2,7 @@ import React from 'react'
 import { Movie } from '../types';
 import '../styles/MovieCard.css';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 
 
 interface MovieCardProps {
@@ -10,7 +10,7 @@ interface MovieCardProps {
 }
 
 
-const MovieCard: React.FC<MovieCardProps> = ({movie}) => {
+const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -20,21 +20,23 @@ const MovieCard: React.FC<MovieCardProps> = ({movie}) => {
     <Card className='movie-card'>
       <CardActionArea onClick={handleClick}>
         <CardMedia
-          className='movie-card__image'
           component="img"
+          height="140"
           alt={movie.name}
           image={movie.poster.url}
         />
-        <CardContent className='movie-card__content'>
-          <Typography gutterBottom variant="h5" component="div">
+        <CardContent>
+          <Typography variant="h5">
             {movie.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {movie.year}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Рейтинг: {movie.rating.kp}
-          </Typography>
+          <Box display='flex' justifyContent='space-between'>
+            <Typography variant="body2" color="textSecondary">
+              Дата выхода:{movie.year}
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Рейтинг: {movie.rating.kp}
+            </Typography>
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>
