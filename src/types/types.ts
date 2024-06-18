@@ -38,4 +38,3 @@ export interface SearchQuery {
     filters: FilterOptions;
     page: number;
 }
-

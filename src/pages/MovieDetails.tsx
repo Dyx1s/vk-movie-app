@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../services/api';
 import { Container, Typography, Box } from '@mui/material';
-import { Movie } from '../types';
+import { Movie } from '../types/types';
 import '../styles/MovieDetails.css';
 
 const MovieDetails: React.FC = () => {

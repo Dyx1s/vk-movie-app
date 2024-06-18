@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
-import { Movie } from '../types';
+import { Movie } from '../types/types';
 import MovieCard from './MovieCard';
 import '../styles/MovieList.css';
 

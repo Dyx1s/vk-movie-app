@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { ApiResponse } from '../types';
+import { ApiResponse } from '../types/types';
 
-const API_KEY = '1WGH8KG-9E9MFT9-MA28JDS-4R114Z4';
+const API_KEY = '7THRVK7-5Z0MB59-JPFESA4-XEBVCRM';
 const BASE_URL = 'https://api.kinopoisk.dev';
 
 export const fetchMovies = async (page: number, query: string, genres: { name: string }[], rating: number, year: number): Promise<ApiResponse> => {
@@ -13,9 +13,9 @@ export const fetchMovies = async (page: number, query: string, genres: { name: s
       params: {
         page,
         query,
-        genres: genres.map(g => g.name).join(','),
-        'rating.kp': rating,
-        year,
+        genres: genres.map((genre) => genre.name).join(','),
+        /* rating: rating.toString(), */
+        /* year: year.toString(), */
       },
     });
     return response.data;
@@ -24,3 +24,13 @@ export const fetchMovies = async (page: number, query: string, genres: { name: s
     throw error;
   }
 };
+
+export const fetchMovieDetails = (id: string) =>
+  axios.get(`${BASE_URL}/v1/movie/${id}`, {
+    headers: {
+      'X-API-KEY': API_KEY,
+    },
+  });
+
+  
+
